@@ -1,2 +1,2 @@
 # EEWreportfigures
-some draft figure data 
+some draft figure code
