@@ -16,9 +16,9 @@ library(wesanderson)
 
 #let's load in the data 
 
-RCRA <- read.csv(here("MA4_RCRA_enforcement.csv"))
+CAA <- read.csv(here("MA4_CAA_enforcement.csv"))
 
-RCRA$year <- as.numeric(RCRA$year)
+CAA$year <- as.numeric(CAA$year)
 
 #some basics on axis formatting 
 
@@ -27,11 +27,12 @@ largernumbers2 <- element_text(face = "bold", size = 12)
 
 #let's make a figure that looks *sparklyyyy*
 
-RCRAinsp <- ggplot(RCRA, mapping=aes(x=factor(year), y=RCRA_enforcement, color=President, group=1))+
+CAAenforce <- ggplot(CAA, mapping=aes(x=factor(year), y=CAA_enforcement, color=President, group=1))+
+  scale_color_manual(values=c("#00bb38" , "#619eff"))+
   geom_point(size=3)+
   geom_line()+
-  labs(y="RCRA enforcement", x="Year")+
-  ggtitle("RCRA enforcement in MA 4")+
+  labs(y="CAA enforcement", x="Year")+
+  ggtitle("CAA enforcement in MA 4")+
   theme_bw()+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),panel.border = element_blank(),
         axis.line = element_line(colour = "black"),
@@ -42,7 +43,11 @@ RCRAinsp <- ggplot(RCRA, mapping=aes(x=factor(year), y=RCRA_enforcement, color=P
 
 
 
-RCRAinsp
+CAAenforce
   
+
+#now let's save it 
+
+ggsave("CAA_enforcement_MA4.png", plot = CAAenforce)
   
   
